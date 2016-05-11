@@ -1,0 +1,72 @@
+.controls-container {
+    clear: both;
+    margin-top: 20px;
+    @include animation(trackIntro .5s $ease-out-quart 1.1s);
+    @include animation-fill-mode(backwards);
+
+    .avatar {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        float: left;
+        height: 40px;
+        width: 40px;
+        @include cool-shadow(6px);
+    }
+}
+
+.controls {
+    float: right;
+    list-style: none;
+    @include transform(translateZ(0));
+
+    .control {
+        cursor: pointer;
+        display: inline-block;
+        font-size: 24px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 10px;
+        text-align: left;
+        text-indent: 4px;
+        vertical-align: top;
+        width: 40px;
+        @include cool-shadow(6px);
+        @include user-select(none);
+    }
+
+    .index,
+    .pause,
+    .skip {
+        text-indent: 5px;
+    }
+
+    .shuffle {
+
+        .shuffle-icon {
+            opacity: .3;
+        }
+
+        &.on .shuffle-icon {
+            opacity: 1;
+        }
+    }
+
+    .pause {
+
+        .play-icon {
+            display: none;
+        }
+
+        &.paused {
+
+            .play-icon {
+                display: inline;
+            }
+
+            .pause-icon {
+                display: none;
+            }
+        }
+    }
+}

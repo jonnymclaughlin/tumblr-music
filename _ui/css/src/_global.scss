@@ -1,0 +1,13 @@
+.clear {
+    clear: both;
+}
+
+.hide {
+    display: none;
+}
+
+.offscreen {
+    left: -999999px;
+    position: absolute;
+    top: -999999px;
+}

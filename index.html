@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tumblr Music</title>
+    <link rel="stylesheet" href="_ui/css/main.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="_ui/js/main-min.js"></script>
+</head>
+<body>
+<div id="container">
+    <section id="index">
+        <div class="search-container">
+            <p>Enter a Tumblr username or url</p>
+            <input class="search-bar" tabindex="1" type="text" name="search" placeholder="tumblr music" value="" autocomplete="off" />
+        </div>
+        <div class="tracks-container">
+            <div class="track-list"></div>
+        </div>
+    </section>
+</div>
+<script id="track-list-template" type="text/template">
+<% if(typeof posts !== 'undefined') { %>
+    <div class="track-group">
+        <% if(_.size(posts) < 1) { %>
+            <p class="no-posts">No audio posts found</p>
+        <% } else { %>
+            <% _.each(posts, function(post, i) { %>
+                <% if(post.audio_type !== 'spotify') { %>
+                    <div class="track" data-index="<%- i %>" data-album-art="<%- post.album_art %>">
+                        <div class="album-art" style="background-image:url(<%- post.album_art %>)"></div>
+                        <div class="hover-bar"></div>
+                        <span class="artist"><%- post.artist %></span>
+                        <span class="track-name"><%- post.track_name %></span>
+                    </div>
+                <% } %>
+            <% }); %>
+            <% if(more_posts) { %>
+                <a class="load-more" href="#">Load more posts</a>
+            <% } %>
+        <% } %>
+    </div>
+<% } %>
+</script>
+<script id="track-template" type="text/template">
+    <div class="background" style="background-image:url(<%- album_art %>); height:<%- preview.height %>px; left:<%- preview.left %>px; top:<%- preview.top %>px; width:<%- preview.width %>px">
+        <div class="dim" ></div>
+    </div>
+    <div class="now-playing-track">
+        <div class="current-track"></div>
+        <nav class="controls-container">
+            <a class="avatar" href="<%- blog.url %>" title="<%- blog.name %>" target="_blank" style="background-image:url(<%- blog.avatar_url %>)"></a>
+            <ul class="controls">
+                <li class="control pause" title="play/pause">
+                    <i class="pause-icon icon-pause"></i>
+                    <i class="play-icon icon-play-arrow"></i>
+                </li>
+                <!-- <li class="control shuffle" title="shuffle"><i class="shuffle-icon icon-shuffle"></i></li> -->
+                <li class="control skip" title="skip"><i class="skip-icon icon-skip-next"></i></li>
+                <li class="control index" title="index"><i class="icon-menu"></i></li>
+            </ul>
+        </nav>
+    </div>
+</script>
+<script id="now-playing-template" type="text/template">
+    <p class="artist"><span class="label">Artist</span> <span class="artist-name"><%- artist %></span></p>
+    <p class="track"><span class="label">Track</span> <span class="track-name"><%- track_name %></span></p>
+    <% if(audio_type === 'tumblr') { %>
+        <%= embed %>
+    <% } %>
+</script>
+</body>
+</html>

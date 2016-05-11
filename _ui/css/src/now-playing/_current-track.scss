@@ -1,0 +1,47 @@
+.now-playing-track {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    @include transform(translate(-50%, -50%));
+}
+
+.current-track {
+    padding: 30px;
+    position: relative;
+    width: 600px;
+    @include cool-shadow(8px);
+    @include transform(translateZ(0));
+    @include animation(trackIntro .5s $ease-out-quart 1s);
+    @include animation-fill-mode(backwards);
+
+    .tumblr_audio_player {
+        left: -99999px;
+        position: absolute;
+        top: -99999px;
+    }
+
+    .artist,
+    .track {
+        background: url('../img/dot.png') repeat-x 0 17px;
+        clear: both;
+        height: 32px;
+        line-height: 32px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .artist-name,
+    .track-name {
+        background: #fff;
+        float: right;
+        padding-left: 4px;
+    }
+
+    .label {
+        background: #fff;
+        float: left;
+        margin-right: 30px;
+        padding-right: 4px;
+    }
+}

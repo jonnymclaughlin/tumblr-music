@@ -1,0 +1,75 @@
+#now-playing {
+    background: $background-color;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    @include fixin();
+    @include transition(opacity .3s $ease-out-quart);
+
+    .background {
+        background-attachment: fixed;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        z-index: 1;
+        @include transition(all .4s $ease-in-out-quart .4s);
+
+        .dim {
+            background: $text-color;
+            opacity: .8;
+            z-index: 2;
+            @include fixin();
+        }
+
+        .background-gifs {
+            background-color: $text-color;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: none;
+            z-index: 1;
+            @include fixin();
+            @include animation(nowPlayingFade .7s $ease-out-quart .3s);
+
+            &.playing {
+                display: block;
+            }
+        }
+    }
+
+    .loader {
+        @include animation(nowPlayingFade .7s $ease-out-quart 1s);
+        @include animation-fill-mode(backwards);
+    }
+
+    &.ready {
+        opacity: 1;
+        pointer-events: auto;
+
+        .background {
+            height: 100% !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            @include transition-delay(.4s);
+        }
+    }
+}
+
+// current track
+@import 'now-playing/current-track';
+
+// controls
+@import 'now-playing/controls';
+
+
+@include keyframes(nowPlayingFade) {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@include keyframes(trackIntro) {
+    0% { opacity: 0; @include transform(translateY(80px)); }
+    100% { opacity: 1; @include transform(translateY(0)); }
+}

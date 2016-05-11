@@ -1,0 +1,21 @@
+// Font Smoothing
+@mixin font-smoothing() {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Cool Shadow
+@mixin cool-shadow($size: 8px) {
+    background-color: #fff;
+    border: $border-size solid $text-color;
+    box-shadow: $size $size 0 $text-color;
+}
+
+// Fixin
+@mixin fixin() {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}

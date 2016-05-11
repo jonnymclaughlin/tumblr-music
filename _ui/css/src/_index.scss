@@ -1,0 +1,145 @@
+#index {
+    overflow: auto;
+    z-index: 1;
+    @include fixin();
+
+    .search-container {
+        left: auto;
+        margin: 0 auto;
+        padding: 60px 0;
+        position: relative;
+        top: 50%;
+        width: 600px;
+        z-index: 2;
+        @include transform(translateY(-50%));
+        @include transition(top .5s $ease-in-out-quart, transform .5s $ease-in-out-quart);
+    }
+
+    .search-bar {
+        -webkit-appearance: none;
+        font-family: $font-family;
+        font-size: 24px;
+        font-weight: bold;
+        height: $search-height;
+        letter-spacing: $letter-spacing;
+        line-height: 1;
+        margin-top: 10px;
+        outline: none;
+        padding: 38px 30px;
+        text-transform: uppercase;
+        width: $search-width;
+        @include cool-shadow(8px);
+
+        &.searching {
+            pointer-events: none;
+        }
+    }
+
+    .track-list {
+        margin: 0 auto 60px;
+        max-width: 1000px;
+        overflow: hidden;
+        padding: 0 30px;
+        text-align: center;
+        z-index: 1;
+
+
+        .no-posts {
+            text-align: center;
+        }
+
+        .load-more {
+            color: $text-color;
+            display: inline-block;
+            margin: 30px auto 0;
+            text-decoration: underline;
+        }
+    }
+
+    .track {
+        background: url('../img/dot.png') repeat-x 0 17px;
+        clear: both;
+        cursor: pointer;
+        display: block;
+        height: 32px;
+        line-height: 32px;
+        margin: 0;
+        @include transition(background-color .2s $ease-out-quart, color .2s $ease-out-quart);
+
+        &.nope {
+            opacity: .3;
+            pointer-events: none;
+            text-decoration: line-through;
+        }
+
+        .artist,
+        .track-name {
+            background: $background-color;
+            display: block;
+            vertical-align: bottom;
+            @include transition(background-color .2s $ease-out-quart);
+        }
+
+        .artist {
+            float: left;
+            padding: 0 10px 0 4px;
+        }
+
+        .track-name {
+            float: right;
+            padding: 0 4px 0 10px;
+        }
+
+        .album-art {
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1;
+            @include transition(opacity .5s $ease-out-quart);
+        }
+
+        &:hover {
+            background-color: $text-color;
+            color: $background-color;
+            @include user-select(none);
+
+            .artist,
+            .track-name {
+                background-color: $text-color;
+            }
+
+            .album-art {
+                opacity: .3;
+            }
+        }
+
+        @for $i from 1 to 22 {
+            &:nth-child(#{$i}n) {
+                @include animation(trackListIntro .5s $ease-in-out-quart);
+                @include animation-fill-mode(backwards);
+                @include animation-delay($i * .05s);
+            }
+        }
+    }
+
+
+    &.show-tracks {
+
+        .search-container {
+            top: 0;
+            @include transform(translateY(0));
+        }
+    }
+}
+
+@include keyframes(trackListIntro) {
+    0% { opacity: 0; @include transform(translateY(300px)); }
+    100% { opacity: 1; @include transform(translateY(0)); }
+}

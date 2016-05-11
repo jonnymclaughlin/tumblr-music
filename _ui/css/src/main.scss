@@ -1,0 +1,53 @@
+// Reset
+@import 'bourbon/bourbon';
+@import 'reset';
+@import 'fonts';
+@import 'mixins';
+
+// vars
+$background-color: #f5f5f5;
+$border-size: 3px;
+$font-family: 'Courier New', Courier, monospace;
+$letter-spacing: .2em;
+$search-height: 100px;
+$search-width: 600px;
+$text-color: #2a2928;
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: $background-color;
+    color: $text-color;
+    font-family: $font-family;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: $letter-spacing;
+    text-transform: uppercase;
+    @include font-smoothing();
+
+    * {
+        @include box-sizing(border-box);
+    }
+}
+
+// Loader
+@import 'loader';
+
+// Index
+@import 'index';
+
+// Now Playing
+@import 'now-playing';
+
+// Global
+@import 'global';
+
+// Media
+@import 'media';
+
+// Print
+@import 'print';

@@ -1,0 +1,2 @@
+# Tumblr Music
+A 24 hour hack day project. This will load a Tumblr user's music posts and display a playlist of their latest tracks. You can then listen to all the tracks in order, skip to the next, etc. Animated GIFs are loaded in the background based on genre.
